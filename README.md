@@ -1,4 +1,8 @@
 # IETI-LAB1
+#Parte 2 del laboratorio en el siguiente link
+
+https://github.com/MiguelFuquene1024/IETI-LAB1-PART2
+
 Laboratorio 1 de ieti
 
 <img align="right" src="https://github.com/ada-school/module-template/blob/main/ada.png">
