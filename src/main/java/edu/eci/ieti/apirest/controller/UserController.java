@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.http.HttpStatus;
 
 @RestController
 @RequestMapping( "/v1/user" )
@@ -22,36 +23,49 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<User>> all()
     {
-        //TODO implement this method using UserService
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(userService.all());
     }
 
     @GetMapping( "/{id}" )
     public ResponseEntity<User> findById( @PathVariable String id )
     {
-        //TODO implement this method using UserService
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findById(id));
     }
 
 
     @PostMapping
     public ResponseEntity<User> create( @RequestBody UserDto userDto )
     {
-        //TODO implement this method using UserService
-        return null;
+        try 
+        {
+            return ResponseEntity.status(HttpStatus.OK).body(userService.create(new User(userDto)));
+        } catch (Exception e) 
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
     @PutMapping( "/{id}" )
     public ResponseEntity<User> update( @RequestBody UserDto userDto, @PathVariable String id )
     {
-        //TODO implement this method using UserService
-        return null;
+        try 
+        {
+            return ResponseEntity.status(HttpStatus.OK).body(userService.update(new User(userDto),id));
+        } catch (Exception e) 
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
     @DeleteMapping( "/{id}" )
     public ResponseEntity<Boolean> delete( @PathVariable String id )
     {
-        //TODO implement this method using UserService
-        return null;
+         try 
+        {   userService.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(true);
+        } catch (Exception e) 
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }     
     }
 }
